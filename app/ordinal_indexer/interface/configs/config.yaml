@@ -1,0 +1,29 @@
+# grpc 服务配置
+grpc:
+  host: "localhost"
+  port: "50051"
+  name: "indexer-interface"
+
+# http 服务配置
+http:
+  host: "localhost"
+  port: "8080"
+  name: "order-http"
+
+serviceEndpoint:
+  user: "user:50051"
+
+# database 数据库配置
+database:
+  serverDB:
+    source: ""
+    driver: "mysql"
+  redis:
+    host: ""
+    port: "6378"
+    password: ""
+# tracer
+#trace:
+#  tracerName: "order-service-tracer"
+#  serviceName: "order-service"
+#  endPoint: "otel-collector.otel:4317"

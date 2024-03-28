@@ -1,0 +1,32 @@
+# grpc 服务配置
+grpc:
+  host: "localhost"
+  port: "50051"
+  name: "indexer-task"
+
+
+# database 数据库配置
+database:
+  serverDB:
+    source: ""
+    driver: "mysql"
+  redis:
+    host: ""
+    port: "6378"
+    password: ""
+
+qtumDataSource:
+  netType: "test"
+  url: "https://qtum-rpc.foxnb.net/test/"
+  accessToken: ""
+
+qordDataSource:
+  firstInscriptionHeight: 3547171
+  url: "https://qtum-rpc.foxnb.net/test/"
+  accessToken: ""
+
+# tracer
+#trace:
+#  tracerName: "order-service-tracer"
+#  serviceName: "order-service"
+#  endPoint: "otel-collector.otel:4317"

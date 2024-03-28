@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package ordinal_indexer.task.v1;
+
+option go_package = "github.com/6block/fox_ordinal/api/ordinal_indexer/task/v1";
+import "google/api/annotations.proto";
+service OrdinalIndexerTask {
+//  rpc Pong(PongReq) returns(PongReply){}
+
+  rpc Ping(PingReq) returns(PingReply){
+    option (google.api.http) = {
+      get: "/v1/ping"
+      //      additional_bindings {5rt                                     7y
+      //        get: "/v1/author/{author_id}/articmles"
+      //      }
+    };
+  }
+
+
+}
+
+message PingReq {
+  string id = 1; // @gotags: form:"address"
+
+}
+
+message PingReply {
+}
+

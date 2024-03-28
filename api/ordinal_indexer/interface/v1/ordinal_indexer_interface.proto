@@ -1,0 +1,110 @@
+syntax = "proto3";
+
+package ordinal_indexer.interface.v1;
+
+option go_package = "github.com/6block/fox_ordinal/api/ordinal_indexer/interface/v1";
+import "google/api/annotations.proto";
+service OrdinalIndexerInterface {
+//  rpc Pong(PongReq) returns(PongReply){}
+
+//  rpc GetAmount(GetAmountReq) returns(GetAmountReply){
+//    option (google.api.http) = {
+//      get: "/v1/getAmount"
+//      //      additional_bindings {
+//      //        get: "/v1/author/{author_id}/articles"
+//      //      }
+//    };
+//  }
+
+  rpc ListTickers(ListTickersReq) returns(ListTickersReply){
+    option (google.api.http) = {
+      get: "/v1/tickers"
+      //      additional_bindings {
+      //        get: "/v1/author/{author_id}/articles"
+      //      }
+    };
+  }
+
+  rpc ListHolders(ListHoldersReq) returns(ListHoldersReply){
+    option (google.api.http) = {
+      get: "/v1/holders"
+      //      additional_bindings {
+      //        get: "/v1/author/{author_id}/articles"
+      //      }
+    };
+  }
+
+  rpc ListAddressTickerBalances(ListAddressTickerBalancesReq) returns(ListAddressTickerBalancesReply){
+    option (google.api.http) = {
+      get: "/v1/balances"
+      //      additional_bindings {
+      //        get: "/v1/author/{author_id}/articles"
+      //      }
+    };
+  }
+
+}
+
+
+
+message ListTickersReq {
+  string chain_id = 1; // @gotags: form:"chain_id"
+  string tick = 2; // @gotags: form:"tick"
+  string status = 3; // @gotags: form:"status"
+  int64 page = 4; // @gotags: form:"page"
+  int64 page_size = 5; // @gotags: form:"page_size"
+}
+message ListTickersReply {
+  repeated TickerInfo ticker_list = 1;
+  Pagination pagination_info = 2;
+}
+
+message ListHoldersReq {
+  string chain_id = 1; // @gotags: form:"chain_id"
+  string tick = 2; // @gotags: form:"tick"
+  string protocol = 3; // @gotags: form:"protocol"
+  int64 page = 4; // @gotags: form:"page"
+  int64 page_size = 5; // @gotags: form:"page_size"
+}
+message ListHoldersReply {
+  repeated AddressTickerBalanceInfo address_ticker_balance_list = 1;
+  Pagination pagination_info = 2;
+}
+
+message ListAddressTickerBalancesReq {
+  string chain_id = 1; // @gotags: form:"chain_id"
+  string address = 2;// @gotags: form:"address"
+  int64 page = 3; // @gotags: form:"page"
+  int64 page_size = 4; // @gotags: form:"page_size"
+}
+
+message ListAddressTickerBalancesReply {
+  repeated AddressTickerBalanceInfo address_ticker_balance_list = 1;
+  Pagination pagination_info = 2;
+}
+
+
+message Pagination {
+  int64 page = 1;
+  int64 page_size = 2;
+  int64 total = 3;
+  int64 total_page = 4;
+}
+
+message TickerInfo {
+  string token_name = 1;
+  string deploy_time = 2;
+  string progress = 3;
+  int64 holders = 4;
+  int64 mint_times = 5;
+}
+
+message AddressTickerBalanceInfo{
+  string wallet_address = 1;
+  string token_name = 2;
+  double transferable = 3;
+  double available = 4;
+  double balance = 5;
+}
+
+
